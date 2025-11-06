@@ -18,6 +18,8 @@
   /* --font-sans: var(--font-geist-sans); */
   /* --font-mono: var(--font-geist-mono); */
   --space-grotesk: var(--font-geist-sans);
+
+  --contained-xl: 1408px;
 }
 
 /* @media (prefers-color-scheme: dark) {

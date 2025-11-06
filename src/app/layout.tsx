@@ -7,12 +7,17 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Sourceful | AI packaging design | Test",
+  metadataBase: new URL(defaultUrl),
+  title: "Sourceful | AI packaging design",
   description: "Design packaging your customers love by chatting with AI.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
