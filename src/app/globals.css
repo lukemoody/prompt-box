@@ -38,6 +38,7 @@ body {
   background-image: linear-gradient(90deg, #eacdff, #b3dcff, #8effe4);
 }
 
+/* 
 .text-ui-grey-950 {
   --tw-text-opacity: 1;
   color: rgb(41 41 41 / var(--tw-text-opacity, 1));
@@ -47,3 +48,8 @@ body {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
+
+.bg-ui-grey-200 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(220 220 220 / var(--tw-bg-opacity, 1));
+} */

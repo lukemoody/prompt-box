@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Sidebar } from "@/components/sidebar/sidebar";
+import { Sidebar } from "@/components/sidebar/Sidebar";
+import { navigationData } from "@/data/navigationList";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -21,10 +22,8 @@ export default function DashboardLayout({
       data-testid="dashboard-page"
       className="h-screen w-full flex flex-row items-start justify-between p-6"
     >
-      <div className="w-full md:w-1/12">
-        <Sidebar />
-      </div>
-      <div className="w-full md:w-11/12 pt-16 lg:pt-18">{children}</div>
+      <Sidebar navigation={navigationData} />
+      <div className="w-full pt-16 lg:pt-18">{children}</div>
     </div>
   );
 }
