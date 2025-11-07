@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { PromptBox } from ".";
+import { PromptContainer } from ".";
 
-describe("PromptBox", () => {
-  test("render PromptBox component successfully", () => {
-    render(<PromptBox />);
+describe("PromptContainer", () => {
+  test("render PromptContainer component successfully", () => {
+    render(<PromptContainer />);
 
     const element = screen.getByTestId("prompt-box");
     expect(element).toBeInTheDocument();

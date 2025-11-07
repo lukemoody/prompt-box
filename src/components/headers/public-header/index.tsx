@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSessionStore } from "@/stores/session-store";
 
-export const Header = ({
+export const PublicHeader = ({
   hideElements = false,
   logoReduced = false,
 }: {
@@ -18,7 +18,7 @@ export const Header = ({
 
   return (
     <header
-      data-testid="header"
+      data-testid="public-header"
       className={cn(
         "fixed top-0 left-0 right-0 z-10 flex items-center justify-between max-w-[1408px] w-full mx-auto py-5 md:py-2 px-5 xl:px-0",
         hideElements && "max-w-full py-5 xl:py-8! px-5 xl:px-10! h-auto"
@@ -44,5 +44,3 @@ export const Header = ({
     </header>
   );
 };
-
-// 128 x 28

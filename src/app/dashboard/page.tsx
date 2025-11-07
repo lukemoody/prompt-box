@@ -2,7 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useSessionStore } from "@/stores/session-store";
-import { PromptBox } from "@/components/prompt-box";
+import { PromptContainer } from "@/components/prompt-box/prompt-container";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function DashboardPage() {
           </h1>
         )}
       </div>
-      <PromptBox />
+      <PromptContainer />
     </div>
   );
 }

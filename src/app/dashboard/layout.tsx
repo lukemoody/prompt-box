@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Sidebar } from "@/components/sidebar/Sidebar";
-import { ToolbarPill } from "@/components/toolbar/ToolbarPill";
+import { PlatformSidebar } from "@/components/sidebar/platform-sidebar";
+import { ToolbarPill } from "@/components/toolbar/toolbar-pill";
 import { navigationData } from "@/config/navigationList";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -25,7 +25,7 @@ export default function DashboardLayout({
         data-testid="dashboard-page"
         className="h-screen w-full flex flex-row items-start justify-between p-6"
       >
-        <Sidebar navigation={navigationData} />
+        <PlatformSidebar navigation={navigationData} />
         <div className="w-full pt-16 lg:pt-18">{children}</div>
       </div>
     </>

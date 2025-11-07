@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useSessionStore } from "@/stores/session-store";
 import { signInWithEmail } from "@/actions/auth/sign-in-with-email";
 import { useMutation } from "@tanstack/react-query";
-import { Header } from "@/components/header";
+import { PublicHeader } from "@/components/headers/public-header";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import {
@@ -82,7 +82,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <Header hideElements={true} logoReduced={true} />
+      <PublicHeader hideElements={true} logoReduced={true} />
       <div
         data-testid="login-page"
         className="h-screen w-full flex items-center justify-center px-5"

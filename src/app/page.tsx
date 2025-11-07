@@ -1,10 +1,10 @@
-import { Header } from "@/components/header";
-import { PromptBox } from "@/components/prompt-box";
+import { PublicHeader } from "@/components/headers/public-header";
+import { PromptContainer } from "@/components/prompt-box/prompt-container";
 
 export default function LandingPage() {
   return (
     <>
-      <Header hideElements={false} />
+      <PublicHeader hideElements={false} />
       <div
         data-testid="landing-page"
         className="h-screen w-full flex flex-col md:items-center md:justify-center pt-20"
@@ -18,7 +18,7 @@ export default function LandingPage() {
             for launch.
           </p>
         </div>
-        <PromptBox />
+        <PromptContainer />
       </div>
     </>
   );

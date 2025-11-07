@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useSessionStore } from "@/stores/session-store";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ToolbarPopover } from "@/components/toolbar/ToolbarPopover";
+import { ToolbarPopover } from "@/components/toolbar/toolbar-popover";
 import {
   Card,
   CardHeader,
@@ -34,7 +34,10 @@ export const ToolbarPill = () => {
   if (isMobile) return false;
 
   return (
-    <div className="fixed top-6 right-8 flex items-center justify-between py-2 px-4 z-20 w-[200px] bg-background/80 rounded-full">
+    <div
+      data-testid="toolbar-pill"
+      className="fixed top-6 right-8 flex items-center justify-between py-2 px-4 z-20 w-[200px] bg-background/80 rounded-full"
+    >
       <ToolbarPopover
         trigger={<Bell />}
         triggerClassName="flex items-center justify-center rounded-full w-[40px] h-[40px]"

@@ -4,6 +4,7 @@
   --background: #ffffff;
   --foreground: #222222;
   --ui-blue: #b3dcff;
+  --ui-blue-dark: #0038ff;
   --ui-brown: #dcdcdc;
   --ui-grey: #656565;
   --ui-grey-light: hsla(0, 0%, 97%, 0.9);
@@ -13,12 +14,13 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-ui-blue: var(--ui-blue);
+  --color-ui-blue-dark: var(--ui-blue-dark);
   --color-ui-brown: var(--ui-brown);
   --color-ui-grey: var(--ui-grey);
   --color-ui-grey-light: var(--ui-grey-light);
   --font-space-grotesk: var(--font-space-grotesk);
 
-  --color-primary: red;
+  --color-primary: var(--ui-blue-dark);
   --color-primary-foreground: white;
 
   --color-secondary: var(--foreground);

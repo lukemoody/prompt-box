@@ -20,6 +20,7 @@ export const ToolbarPopover = ({
   return (
     <Popover>
       <PopoverTrigger
+        data-testid="toolbar-popover"
         className={cn(
           "transition hover:bg-ui-brown data-[state=open]:bg-ui-blue cursor-pointer",
           triggerClassName
