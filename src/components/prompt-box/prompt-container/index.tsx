@@ -1,6 +1,7 @@
 "use client";
 // import React from "react";
 import { useSessionStore } from "@/stores/session-store";
+import { PromptSelector } from "@/components/prompt-box/prompt-selector";
 import { PromptImgCount } from "@/components/prompt-box/prompt-img-count";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -30,6 +31,7 @@ export const PromptContainer = () => {
       data-element="prompt-box"
       className="flex flex-col items-center justify-center rounded-4xl overflow-hidden max-w-[928px] w-full mx-auto p-10 bg-background"
     >
+      <PromptSelector />
       <Textarea
         placeholder={placeholderMap["imageGen"]}
         className="border-transparent shadow-none"

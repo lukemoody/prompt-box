@@ -1,3 +1,5 @@
+"use client";
+import { useSessionStore } from "@/stores/session-store";
 import {
   Tooltip,
   TooltipContent,
@@ -15,6 +17,11 @@ import { Image as ImageIcon } from "lucide-react";
 // TODO: NEED TO HOOK THIS TO STATE
 
 export const PromptImgCount = () => {
+  const { activeUser } = useSessionStore();
+  const { isAuthenticatied } = activeUser;
+
+  if (!isAuthenticatied) return false;
+
   return (
     <Popover>
       <PopoverTrigger>
