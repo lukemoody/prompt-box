@@ -36,5 +36,3 @@ export const PromptSelector = () => {
     </div>
   );
 };
-
-// prompt-selector

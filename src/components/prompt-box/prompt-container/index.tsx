@@ -1,6 +1,7 @@
 "use client";
-// import React from "react";
+import React from "react";
 import { useSessionStore } from "@/stores/session-store";
+import { usePromptStore } from "@/stores/prompt-store";
 import { PromptSelector } from "@/components/prompt-box/prompt-selector";
 import { PromptImgCount } from "@/components/prompt-box/prompt-img-count";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,14 @@ export const PromptContainer = () => {
   const updateCreditsBalance = useSessionStore(
     (state) => state.updateCreditsBalance
   );
+  const promptType = usePromptStore((state) => state.promptType);
+  const [type, setType] = React.useState("imageGen");
+
+  React.useEffect(() => {
+    if (promptType) {
+      setType(promptType);
+    }
+  }, [promptType]);
 
   // TODO: Add form here
 
@@ -32,10 +41,12 @@ export const PromptContainer = () => {
       className="flex flex-col items-center justify-center rounded-4xl overflow-hidden max-w-[928px] w-full mx-auto p-10 bg-background"
     >
       <PromptSelector />
-      <Textarea
-        placeholder={placeholderMap["imageGen"]}
-        className="border-transparent shadow-none"
-      />
+      <div className="py-5 w-full">
+        <Textarea
+          placeholder={placeholderMap[type as keyof typeof placeholderMap]}
+          className="border-transparent shadow-none"
+        />
+      </div>
       <div
         data-element="prompt-box-footer"
         className="flex items-center justify-between w-full mt-5"

@@ -11,26 +11,7 @@ import {
   TabletSmartphone,
   BookCopy,
 } from "lucide-react";
-
-export type PromptOptionType = {
-  heading: string;
-  text: string;
-  imgSrc: string;
-  type:
-    | "imageGen"
-    | "packagingDesign"
-    | "logoDesign"
-    | "imageEdit"
-    | "aiPhotoshoot"
-    | "packagingRange"
-    | "variantRange"
-    | "socialAd"
-    | "brandMood"
-    | "packagingMocks"
-    | "cardsPosters";
-  status: string | null;
-  icon: React.ReactNode;
-};
+import { PromptOptionType } from "@/types/prompts";
 
 export const promptOptions: Array<PromptOptionType> = [
   {
