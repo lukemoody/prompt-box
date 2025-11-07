@@ -4,7 +4,7 @@ import { QueryProvider } from "@/components/providers/query-provider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
-  variable: "--font-geist-sans",
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 

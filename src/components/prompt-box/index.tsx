@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+// import React from "react";
 import { useSessionStore } from "@/stores/session-store";
 import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 
 export const PromptBox = () => {
-  // TODO: Testing
   const { activeUser } = useSessionStore();
-  const { credits } = activeUser;
+  const { isAuthenticatied, credits } = activeUser;
   const updateCreditsBalance = useSessionStore(
     (state) => state.updateCreditsBalance
   );
@@ -21,9 +21,16 @@ export const PromptBox = () => {
       <p>TODO: PROMPT BOX HERE</p>
       <Button
         onClick={() => updateCreditsBalance()}
-        disabled={credits < 20 ? true : false}
+        disabled={isAuthenticatied && credits < 20 ? true : false}
       >
-        Generate (15)
+        {isAuthenticatied ? (
+          "Generate"
+        ) : (
+          <>
+            <Sparkles />
+            Start for free
+          </>
+        )}
       </Button>
     </div>
   );

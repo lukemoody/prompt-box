@@ -16,7 +16,7 @@
   --color-ui-brown: var(--ui-brown);
   --color-ui-grey: var(--ui-grey);
   --color-ui-grey-light: var(--ui-grey-light);
-  --space-grotesk: var(--font-geist-sans);
+  --font-space-grotesk: var(--font-space-grotesk);
 
   --color-primary: red;
   --color-primary-foreground: white;
@@ -39,6 +39,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-space-grotesk);
 }
 
 .bg-gradient-r-violet-blue-green-subtle {
