@@ -13,11 +13,7 @@ export const useAuthStore = create<AuthStoreType>()(
       (set) => ({
         isAuthenticatied: false,
         setAuthenticatied: (auth: boolean) =>
-          set(
-            { isAuthenticatied: auth },
-            undefined,
-            "refresh/setAuthenticatied"
-          ),
+          set({ isAuthenticatied: auth }, undefined, "auth/setAuthenticatied"),
         getAuthentication: () => {
           if (typeof window === "undefined") return false;
           // read from sessionStorage directly

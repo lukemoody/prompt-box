@@ -10,11 +10,15 @@
 :root {
   --background: #ffffff;
   --foreground: #222222;
+  --ui-blue: #b3dcff;
+  --ui-brown: #dcdcdc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ui-blue: var(--ui-blue);
+  --color-ui-brown: var(--ui-brown);
   /* --font-sans: var(--font-geist-sans); */
   /* --font-mono: var(--font-geist-mono); */
   --space-grotesk: var(--font-geist-sans);
