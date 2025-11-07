@@ -33,6 +33,7 @@ export default function LoginPage() {
   const [isValidating, setValidating] = React.useState<boolean>(false);
   const setAuthenticatied = useSessionStore((state) => state.setAuthenticatied);
   const setProfile = useSessionStore((state) => state.setProfile);
+  const setEmailAddress = useSessionStore((state) => state.setEmailAddress);
   const setAvailableCredits = useSessionStore(
     (state) => state.setAvailableCredits
   );
@@ -57,6 +58,7 @@ export default function LoginPage() {
     onSuccess: (response) => {
       if (response.status === 200 && response.data) {
         setProfile(response.data?.name);
+        setEmailAddress(response.data?.email);
         setAvailableCredits(response.data?.credits);
         setAuthenticatied(true);
         router.push("/dashboard");

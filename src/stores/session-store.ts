@@ -6,9 +6,11 @@ interface SessionStoreType {
     credits: number;
     isAuthenticatied: boolean;
     username: string | null;
+    email: string | null;
   };
   setAuthenticatied: (auth: boolean) => void;
   setProfile: (value: string) => void;
+  setEmailAddress: (value: string) => void;
   setAvailableCredits: (value: number) => void;
   updateCreditsBalance: () => void;
   getAuthentication: () => boolean;
@@ -39,6 +41,14 @@ export const useSessionStore = create<SessionStoreType>()(
             }),
             undefined,
             "session/setProfile"
+          ),
+        setEmailAddress: (value: string) =>
+          set(
+            (state) => ({
+              activeUser: { ...state.activeUser, email: value },
+            }),
+            undefined,
+            "session/setEmailAddress"
           ),
         setAvailableCredits: (value: number) =>
           set(
@@ -81,6 +91,7 @@ export const useSessionStore = create<SessionStoreType>()(
                 credits: 0,
                 isAuthenticatied: false,
                 username: null,
+                email: null,
               },
             }),
             undefined,

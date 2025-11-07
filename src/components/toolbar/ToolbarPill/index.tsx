@@ -1,6 +1,15 @@
 "use client";
 import Link from "next/link";
-import { Bell, Coins, Heart } from "lucide-react";
+import {
+  Bell,
+  CalendarCog,
+  Coins,
+  Heart,
+  MessageCircleQuestionMark,
+  History,
+  CreditCard,
+  Tag,
+} from "lucide-react";
 import { useSessionStore } from "@/stores/session-store";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ToolbarPopover } from "@/components/toolbar/ToolbarPopover";
@@ -20,7 +29,7 @@ import { LogoutButton } from "@/components/auth/logout-button";
 export const ToolbarPill = () => {
   const isMobile = useIsMobile();
   const { activeUser } = useSessionStore();
-  const { credits, username } = activeUser;
+  const { credits, email, username } = activeUser;
 
   if (isMobile) return false;
 
@@ -30,7 +39,21 @@ export const ToolbarPill = () => {
         trigger={<Bell />}
         triggerClassName="flex items-center justify-center rounded-full w-[40px] h-[40px]"
       >
-        Notifications
+        <Card className="border-transparent shadow-none p-0">
+          <CardHeader className="px-0 pb-2! border-b border-b-gray-200">
+            <CardTitle className="flex items-center justify-between text-[23px]">
+              Notifications
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="px-0">
+            <div className="text-xs font-regular tracking-normal">
+              You don&apos;t have any notifications yet.
+            </div>
+            <Link href="#" className="text-xs text-blue-700">
+              See all notifications
+            </Link>
+          </CardContent>
+        </Card>
       </ToolbarPopover>
       <ToolbarPopover
         trigger={
@@ -41,8 +64,8 @@ export const ToolbarPill = () => {
         }
         triggerClassName="flex items-center justify-center rounded-full w-auto h-[40px] px-3"
       >
-        <Card className="border-background shadow-none p-0">
-          <CardHeader className="px-0 pb-2! border-b border-b-gray-100">
+        <Card className="border-transparent shadow-none p-0">
+          <CardHeader className="px-0 pb-2! border-b border-b-gray-200">
             <CardTitle className="flex items-center justify-between text-[23px]">
               Your credit usage
               <div className="flex items-center gap-2">
@@ -67,7 +90,7 @@ export const ToolbarPill = () => {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="w-full grid grid-cols-2 gap-8 px-0 pt-4! border-t border-t-gray-100">
+          <CardFooter className="w-full grid grid-cols-2 gap-8 px-0 pt-4! border-t border-t-gray-200">
             <Button variant="secondary" size="sm">
               Buy credits
             </Button>
@@ -81,14 +104,44 @@ export const ToolbarPill = () => {
         trigger={username ? username[0] : <Spinner />}
         triggerClassName="flex items-center justify-center rounded-full w-[40px] h-[40px] bg-ui-blue"
       >
-        <Card className="border-background shadow-none p-0">
-          <CardHeader className="px-0 pb-2! border-b border-b-gray-100">
-            <CardTitle className="flex items-center justify-between text-[23px]">
-              Hi {username} 👋
+        <Card className="border-transparent shadow-none p-0">
+          <CardHeader className="px-0 pb-2! border-b border-b-gray-200">
+            <CardTitle className="flex items-center justify-start gap-4">
+              {/* Hi {username} 👋 */}
+              <div className="flex items-center justify-center rounded-full w-[64px] h-[64px] bg-ui-blue">
+                {username ? username[0] : <Spinner />}
+              </div>
+              <div>
+                <div className="text-2xl font-medium">{username}</div>
+                <div className="text-sm text-ui-grey font-regular tracking-normal">
+                  {email}
+                </div>
+              </div>
             </CardTitle>
           </CardHeader>
-          <CardContent className="px-0">tbc</CardContent>
-          <CardFooter className="w-full grid grid-cols-2 gap-8 px-0 pt-4! border-t border-t-gray-100">
+          <CardContent className="px-0">
+            <Button variant="ghost" className="w-full">
+              <CalendarCog />
+              Manage account
+            </Button>
+            <Button variant="ghost" className="w-full">
+              <Tag />
+              Pricing
+            </Button>
+            <Button variant="ghost" className="w-full">
+              <CreditCard />
+              Billing
+            </Button>
+            <Button variant="ghost" className="w-full">
+              <History />
+              Credit history
+            </Button>
+            <Button variant="ghost" className="w-full">
+              <MessageCircleQuestionMark />
+              Help center
+            </Button>
+          </CardContent>
+          <CardFooter className="w-full grid grid-cols-2 gap-8 px-0 pt-4! border-t border-t-gray-200">
             <LogoutButton />
           </CardFooter>
         </Card>

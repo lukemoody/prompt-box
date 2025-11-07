@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { useSessionStore } from "@/stores/session-store";
 import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 
 export const LogoutButton = () => {
   const clearSession = useSessionStore((state) => state.clearSession);
@@ -17,7 +18,8 @@ export const LogoutButton = () => {
   };
 
   return (
-    <Button variant="secondary" size="sm" onClick={handleLogout}>
+    <Button variant="link" size="sm" onClick={handleLogout}>
+      <LogOut />
       Log out
     </Button>
   );

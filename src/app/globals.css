@@ -6,6 +6,7 @@
   --ui-blue: #b3dcff;
   --ui-brown: #dcdcdc;
   --ui-grey: #656565;
+  --ui-grey-light: hsla(0, 0%, 97%, 0.9);
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-ui-blue: var(--ui-blue);
   --color-ui-brown: var(--ui-brown);
   --color-ui-grey: var(--ui-grey);
+  --color-ui-grey-light: var(--ui-grey-light);
   --space-grotesk: var(--font-geist-sans);
 
   --color-primary: red;
@@ -21,6 +23,8 @@
 
   --color-secondary: var(--foreground);
   --color-secondary-foreground: var(--background);
+
+  --color-accent: var(--ui-brown);
 
   /* --contained-xl: 1408px; */
 }

@@ -30,7 +30,7 @@ export const ToolbarPopover = ({
       <PopoverContent
         align="end"
         sideOffset={10}
-        className="bg-background border-background rounded-3xl min-w-[384px]"
+        className="bg-ui-grey-light border-ui-grey-light rounded-3xl min-w-[384px] shadow-xl"
       >
         {children}
       </PopoverContent>
