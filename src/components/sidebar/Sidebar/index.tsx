@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarItem } from "@/components/sidebar/SidebarItem";
-import { NavItem } from "@/data/navigationList";
+import { NavItem } from "@/config/navigationList";
 
 export const Sidebar = ({ navigation }: { navigation: Array<NavItem> }) => {
   return (

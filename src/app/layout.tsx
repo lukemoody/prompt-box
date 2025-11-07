@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import { QueryProvider } from "@/components/providers/query-provider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -27,7 +28,7 @@ export default async function RootLayout({
       <body
         className={`${spaceGrotesk.variable} antialiased bg-gradient-r-violet-blue-green-subtle`}
       >
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

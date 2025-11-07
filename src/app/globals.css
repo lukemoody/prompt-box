@@ -1,17 +1,11 @@
 @import "tailwindcss";
 
-/**
-* TBC
-// #222222 TEXT
-// 225, 225, 225, 0.8 BACKDROPS
-// rgb(179, 220, 255) PROFILE ICON
-*/
-
 :root {
   --background: #ffffff;
   --foreground: #222222;
   --ui-blue: #b3dcff;
   --ui-brown: #dcdcdc;
+  --ui-grey: #656565;
 }
 
 @theme inline {
@@ -19,11 +13,16 @@
   --color-foreground: var(--foreground);
   --color-ui-blue: var(--ui-blue);
   --color-ui-brown: var(--ui-brown);
-  /* --font-sans: var(--font-geist-sans); */
-  /* --font-mono: var(--font-geist-mono); */
+  --color-ui-grey: var(--ui-grey);
   --space-grotesk: var(--font-geist-sans);
 
-  --contained-xl: 1408px;
+  --color-primary: red;
+  --color-primary-foreground: white;
+
+  --color-secondary: var(--foreground);
+  --color-secondary-foreground: var(--background);
+
+  /* --contained-xl: 1408px; */
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -41,19 +40,3 @@ body {
 .bg-gradient-r-violet-blue-green-subtle {
   background-image: linear-gradient(90deg, #eacdff, #b3dcff, #8effe4);
 }
-
-/* 
-.text-ui-grey-950 {
-  --tw-text-opacity: 1;
-  color: rgb(41 41 41 / var(--tw-text-opacity, 1));
-}
-
-.bg-ui-lightest {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-ui-grey-200 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(220 220 220 / var(--tw-bg-opacity, 1));
-} */

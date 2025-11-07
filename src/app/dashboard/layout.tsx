@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { ToolbarPill } from "@/components/toolbar/ToolbarPill";
-import { navigationData } from "@/data/navigationList";
+import { navigationData } from "@/config/navigationList";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

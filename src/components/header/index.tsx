@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useAuthStore } from "@/stores/authentication-store";
+import { useSessionStore } from "@/stores/session-store";
 
 export const Header = ({
   hideElements = false,
@@ -12,7 +12,9 @@ export const Header = ({
   hideElements?: boolean;
   logoReduced?: boolean;
 }) => {
-  const { isAuthenticatied } = useAuthStore();
+  const isAuthenticatied = useSessionStore(
+    (state) => state.activeUser.isAuthenticatied
+  );
 
   return (
     <header
