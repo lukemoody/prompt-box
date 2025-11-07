@@ -8,7 +8,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { PromptOptionType } from "@/types/prompts";
-// import { Button } from "@/components/ui/button";
 
 interface PromptOptionCardProps {
   item: PromptOptionType;
@@ -17,11 +16,6 @@ interface PromptOptionCardProps {
 export const PromptOptionCard = ({ item }: PromptOptionCardProps) => {
   const promptType = usePromptStore((state) => state.promptType);
   const setPromptType = usePromptStore((state) => state.setPromptType);
-
-  const handleSetType = () => {
-    setPromptType(item.type);
-  };
-
   const isActive = item.type === promptType;
 
   return (
@@ -29,10 +23,10 @@ export const PromptOptionCard = ({ item }: PromptOptionCardProps) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <button
-            onClick={handleSetType}
+            onClick={() => setPromptType(item.type)}
             className={cn(
-              "flex flex-col items-center justify-center gap-2 rounded-2xl p-4 focus:bg-ui-grey-light hover:bg-ui-blue transition cursor-pointer",
-              isActive && "bg-ui-blue"
+              "flex flex-col items-center justify-center gap-2 rounded-2xl p-4 hover:bg-ui-grey-light transition cursor-pointer",
+              isActive && "bg-ui-blue!"
             )}
           >
             <div>{item.icon}</div>

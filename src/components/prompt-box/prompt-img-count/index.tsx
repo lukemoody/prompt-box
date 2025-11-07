@@ -1,5 +1,6 @@
 "use client";
 import { useSessionStore } from "@/stores/session-store";
+import { usePromptStore } from "@/stores/prompt-store";
 import {
   Tooltip,
   TooltipContent,
@@ -14,11 +15,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Image as ImageIcon } from "lucide-react";
 
-// TODO: NEED TO HOOK THIS TO STATE
-
 export const PromptImgCount = () => {
+  // Session state
   const { activeUser } = useSessionStore();
   const { isAuthenticatied } = activeUser;
+
+  // Prompt state
+  const { promptImgQty } = usePromptStore();
+  const setPromptImgQty = usePromptStore((state) => state.setPromptImgQty);
 
   if (!isAuthenticatied) return false;
 
@@ -31,7 +35,7 @@ export const PromptImgCount = () => {
               data-testid="prompt-img-count"
               className="inline-flex items-center justify-center gap-2 h-[36px] hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 rounded-full! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 px-6"
             >
-              <ImageIcon /> 12
+              <ImageIcon /> {promptImgQty}
             </div>
           </TooltipTrigger>
           <TooltipContent className="max-w-[320px] text-center p-4 rounded-2xl bg-foreground">
@@ -47,10 +51,13 @@ export const PromptImgCount = () => {
         sideOffset={10}
         className="bg-ui-grey-light border-ui-grey-light rounded-3xl max-w-[230px] shadow-xl"
       >
-        <RadioGroup defaultValue="option-one">
+        <RadioGroup
+          value={String(promptImgQty)}
+          onValueChange={(value) => setPromptImgQty(Number(value))}
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="option-one"
+              value="1"
               id="option-one"
               className="border-foreground"
             />
@@ -60,7 +67,7 @@ export const PromptImgCount = () => {
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="option-two"
+              value="2"
               id="option-two"
               className="border-foreground"
             />
@@ -70,7 +77,7 @@ export const PromptImgCount = () => {
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="option-three"
+              value="3"
               id="option-three"
               className="border-foreground"
             />
@@ -80,7 +87,7 @@ export const PromptImgCount = () => {
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="option-four"
+              value="4"
               id="option-four"
               className="border-foreground"
             />
@@ -90,7 +97,7 @@ export const PromptImgCount = () => {
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
-              value="option-five"
+              value="5"
               id="option-five"
               className="border-foreground"
             />

@@ -20,12 +20,12 @@ export const PromptSelector = () => {
         <PopoverTrigger data-testid="toolbar-popover" asChild>
           <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-4 bg-ui-brown hover:bg-ui-blue transition cursor-pointer">
             <LayoutGrid />
-            <h3 className="font-medium">More options</h3>
+            <h3 className="font-medium">All options</h3>
           </div>
         </PopoverTrigger>
         <PopoverContent
           align="end"
-          sideOffset={10}
+          sideOffset={0}
           className="grid grid-cols-4 bg-ui-grey-light border-ui-grey-light rounded-3xl min-w-[928px] shadow-xl"
         >
           {promptOptions.map((item, index) => {
