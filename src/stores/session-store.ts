@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
-interface AuthStoreType {
+interface SessionStoreType {
   activeUser: {
     credits: number;
     isAuthenticatied: boolean;
@@ -10,12 +10,12 @@ interface AuthStoreType {
   setAuthenticatied: (auth: boolean) => void;
   setProfile: (value: string) => void;
   setAvailableCredits: (value: number) => void;
-  // TODO: Update credits func
+  updateCreditsBalance: () => void;
   getAuthentication: () => boolean;
   clearSession: () => void;
 }
 
-export const useSessionStore = create<AuthStoreType>()(
+export const useSessionStore = create<SessionStoreType>()(
   persist(
     devtools(
       (set) => ({
@@ -47,6 +47,17 @@ export const useSessionStore = create<AuthStoreType>()(
             }),
             undefined,
             "session/setAvailableCredits"
+          ),
+        updateCreditsBalance: () =>
+          set(
+            (state) => ({
+              activeUser: {
+                ...state.activeUser,
+                credits: state.activeUser.credits - 15,
+              },
+            }),
+            undefined,
+            "session/updateCreditsBalance"
           ),
         getAuthentication: () => {
           if (typeof window === "undefined") return false;

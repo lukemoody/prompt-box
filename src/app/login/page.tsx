@@ -90,7 +90,7 @@ export default function LoginPage() {
             <h1 className="text-[26px] md:text-3xl font-medium text-foreground">
               Log in or sign up in seconds
             </h1>
-            <p className="tracking-normal text-base text-ui-grey font-medium px-24">
+            <p className="tracking-normal text-base text-ui-grey font-medium p5 md:px-24">
               Welcome to Sourceful, sign in to your account..
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function LoginPage() {
                     <FormControl>
                       <Input
                         placeholder="Enter your email here..."
-                        className="h-15 rounded-2xl"
+                        className="h-15 rounded-2xl tracking-normal text-[32px]! text-center"
                         {...field}
                       />
                     </FormControl>
@@ -117,7 +117,7 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size="lg">
+              <Button type="submit" size="lg" className="btn-gradient">
                 {isValidating && <Spinner />}
                 Login or sign up
               </Button>

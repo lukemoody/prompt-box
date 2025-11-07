@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Bell, Coins, Heart } from "lucide-react";
 import { useSessionStore } from "@/stores/session-store";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { ToolbarPopover } from "@/components/toolbar/ToolbarPopover";
 import {
   Card,
@@ -14,9 +15,14 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { LogoutButton } from "@/components/auth/logout-button";
 
+// TODO: Need mobile state for this. Will be different so maybe seperate component?
+
 export const ToolbarPill = () => {
+  const isMobile = useIsMobile();
   const { activeUser } = useSessionStore();
   const { credits, username } = activeUser;
+
+  if (isMobile) return false;
 
   return (
     <div className="fixed top-6 right-8 flex items-center justify-between py-2 px-4 z-20 w-[200px] bg-background/80 rounded-full">
