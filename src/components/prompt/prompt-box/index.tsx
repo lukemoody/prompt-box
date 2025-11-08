@@ -1,7 +1,9 @@
 "use client";
+import React from "react";
 import { useSessionStore } from "@/stores/session-store";
 import { usePromptStore } from "@/stores/prompt-store";
 import { PromptImgCount } from "@/components/prompt/prompt-img-count";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -9,6 +11,11 @@ import {
   FormLabel,
   FormItem,
 } from "@/components/ui/form";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
@@ -27,6 +34,11 @@ const formSchema = z.object({
 });
 
 export const PromptBox = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  console.log(pathname);
+
   // Session state
   const { activeUser } = useSessionStore();
   const { isAuthenticatied, credits } = activeUser;
@@ -35,7 +47,7 @@ export const PromptBox = () => {
   );
 
   // Prompt state
-  const { promptImgQty } = usePromptStore();
+  const { promptImgQty, promptQuery } = usePromptStore();
   const promptType = usePromptStore((state) => state.promptType);
   const setPromptQuery = usePromptStore((state) => state.setPromptQuery);
 
@@ -73,10 +85,30 @@ export const PromptBox = () => {
   // Disable button if query is empty OR if user is authenticated but doesn't have enough credits
   const isDisabled = isQueryEmpty || (isAuthenticatied && !creditsAvailable);
 
+  // Set existing values on mount
+  React.useEffect(() => {
+    form.setValue("query", promptQuery);
+  }, [promptQuery, form]);
+
   // Submit prompt query
   const submitPrompt = (data: z.infer<typeof formSchema>) => {
     setPromptQuery(data.query);
-    updateCreditsBalance(creditCost);
+
+    if (isAuthenticatied) {
+      updateCreditsBalance(creditCost);
+    }
+
+    // If user submitted on homepage and is not authenticated,
+    // redirect to login
+    if (pathname === "/" && !isAuthenticatied) {
+      router.push("/login");
+    }
+
+    // If user submitted on homepage and is authenticated,
+    // redirect to dashboard
+    if (pathname === "/" && isAuthenticatied) {
+      router.push("/dashboard");
+    }
   };
 
   return (
@@ -117,17 +149,33 @@ export const PromptBox = () => {
           <ImageUploader />
           <div className="space-x-4">
             <PromptImgCount />
-            <Button disabled={isDisabled}>
-              <Sparkles />
-              {isAuthenticatied ? (
-                <>
-                  <span className="hidden md:block">Generate</span> {creditCost}{" "}
-                  <Coins />
-                </>
-              ) : (
-                <>Start for free</>
-              )}
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span
+                  className={
+                    isDisabled ? "inline-block cursor-not-allowed" : ""
+                  }
+                >
+                  <Button disabled={isDisabled}>
+                    <Sparkles />
+                    {isAuthenticatied ? (
+                      <>
+                        <span className="hidden md:block">Generate</span>{" "}
+                        {creditCost} <Coins />
+                      </>
+                    ) : (
+                      <>Start for free</>
+                    )}
+                  </Button>
+                </span>
+              </TooltipTrigger>
+              <TooltipContent className="text-center px-4 rounded-2xl bg-foreground">
+                <h3 className="font-medium">Generate</h3>
+                <p className="text-ui-grey-light">
+                  {creditCost} credits required
+                </p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </form>

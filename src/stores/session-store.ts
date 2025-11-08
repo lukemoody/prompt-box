@@ -1,15 +1,9 @@
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
-
-interface ActiveUserState {
-  credits: number;
-  isAuthenticatied: boolean;
-  username: string | null;
-  email: string | null;
-}
+import { UserAuthenticatedType } from "@/types/user";
 
 interface SessionStoreType {
-  activeUser: ActiveUserState;
+  activeUser: UserAuthenticatedType;
   setAuthenticatied: (auth: boolean) => void;
   setProfile: (value: string) => void;
   setEmailAddress: (value: string) => void;

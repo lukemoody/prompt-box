@@ -9,6 +9,7 @@ interface PromptStoreType {
   setPromptType: (type: PromptOptionType["type"]) => void;
   setPromptImgQty: (qty: number) => void;
   setPromptQuery: (query: string) => void;
+  clearPrompt: () => void;
 }
 
 export const usePromptStore = create<PromptStoreType>()(
@@ -23,6 +24,16 @@ export const usePromptStore = create<PromptStoreType>()(
         set({ promptImgQty: qty }, undefined, "prompt/setPromptImgQty"),
       setPromptQuery: (query) =>
         set({ promptQuery: query }, undefined, "prompt/setPromptQuery"),
+      clearPrompt: () =>
+        set(
+          () => ({
+            promptQuery: "",
+            promptImgQty: 5,
+            promptType: "imageGen",
+          }),
+          undefined,
+          "session/clearPrompt"
+        ),
     }),
     { name: "PromptStore" }
   )
