@@ -23,9 +23,10 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ImageUploaderAction } from "@/components/image-uploader/image-uploader-action";
 import { ImageUploaderPreview } from "@/components/image-uploader/image-uploader-preview";
-import { Sparkles, Coins } from "lucide-react";
+import { Sparkles, Coins, CircleAlert } from "lucide-react";
 import { useCredits } from "@/hooks/use-credits";
 import { useCreditBalanceCheck } from "@/hooks/use-credit-balance-check";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 
 // Defined schema for login form
 const formSchema = z.object({
@@ -64,7 +65,19 @@ export const PromptBox = () => {
     packagingDesign: "Describe your ideal packaging vision...",
     logoDesign:
       "Describe your brand, target audience and any details about the logo you want...",
-    // TODO: Others arent placeholder. Implement differently...
+    imageEdit:
+      "Pick from one of your previous designs or upload a new image from your device.",
+    aiPhotoshoot:
+      "Click start photoshoot brief to add your specific shot details.",
+    packagingRange:
+      "Click start packaging range to add your reference design and choose your packaging types.",
+    variantRange:
+      "Click start variant range to add your reference design and describe your variants.",
+    socialAd: "This tool is coming soon! Choose another tool to continue.",
+    brandMood: "This tool is coming soon! Choose another tool to continue.",
+    packagingMocks:
+      "This tool is coming soon! Choose another tool to continue.",
+    cardsPosters: "This tool is coming soon! Choose another tool to continue.",
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -129,15 +142,37 @@ export const PromptBox = () => {
                 <FormItem>
                   <FormLabel className="sr-only">Prompt query</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder={
-                        placeholderMap[
-                          promptType as keyof typeof placeholderMap
-                        ]
-                      }
-                      className="border-transparent shadow-none focus-visible:ring-0!"
-                      {...field}
-                    />
+                    {promptType !== "imageGen" &&
+                    promptType !== "packagingDesign" &&
+                    promptType !== "logoDesign" ? (
+                      <Alert
+                        variant="default"
+                        className="bg-ui-grey-light border-transparent! rounded-full! py-2"
+                      >
+                        <AlertTitle className="flex items-center gap-2">
+                          <CircleAlert className="text-ui-blue-dark" />
+                          {
+                            placeholderMap[
+                              promptType as keyof typeof placeholderMap
+                            ]
+                          }
+                        </AlertTitle>
+                      </Alert>
+                    ) : (
+                      <Textarea
+                        placeholder={
+                          promptType === "imageGen" ||
+                          promptType === "packagingDesign" ||
+                          promptType === "logoDesign"
+                            ? placeholderMap[
+                                promptType as keyof typeof placeholderMap
+                              ]
+                            : ""
+                        }
+                        className="border-transparent shadow-none focus-visible:ring-0!"
+                        {...field}
+                      />
+                    )}
                   </FormControl>
                 </FormItem>
               </>

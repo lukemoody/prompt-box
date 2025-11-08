@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { usePromptStore } from "@/stores/prompt-store";
 import { CircleX } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,11 +32,12 @@ export const ImageUploaderPreview = () => {
 
   return (
     <div className="relative ml-4 w-auto">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={previewUrl}
         alt="Reference image preview"
-        className="w-10 h-auto rounded-lg object-contain max-h-64"
+        width={36}
+        height={36}
+        className="rounded-lg object-contain max-h-64"
       />
       <Button
         variant="ghost"
