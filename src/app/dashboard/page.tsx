@@ -2,7 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useSessionStore } from "@/stores/session-store";
-import { PromptContainer } from "@/components/prompt-box/prompt-container";
+import { PromptContainer } from "@/components/prompt/prompt-container";
 
 export default function DashboardPage() {
   const router = useRouter();

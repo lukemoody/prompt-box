@@ -7,7 +7,7 @@
   --ui-blue-dark: #0038ff;
   --ui-brown: #dcdcdc;
   --ui-grey: #656565;
-  --ui-grey-light: hsla(0, 0%, 97%, 0.9);
+  --ui-grey-light: hsla(0, 0%, 97%, 1);
 }
 
 @theme inline {

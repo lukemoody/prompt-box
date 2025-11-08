@@ -1,5 +1,5 @@
 import { promptOptions } from "@/config/promptOptions";
-import { PromptOptionCard } from "@/components/prompt-box/prompt-option-card";
+import { PromptOptionCard } from "@/components/prompt/prompt-option-card";
 import { LayoutGrid } from "lucide-react";
 import {
   Popover,

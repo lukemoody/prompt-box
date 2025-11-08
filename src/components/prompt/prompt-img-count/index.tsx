@@ -33,7 +33,7 @@ export const PromptImgCount = () => {
           <TooltipTrigger asChild>
             <div
               data-testid="prompt-img-count"
-              className="inline-flex items-center justify-center gap-2 h-[36px] hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 rounded-full! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 px-6"
+              className="inline-flex items-center justify-center gap-2 h-[36px] bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 rounded-full! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 px-6"
             >
               <ImageIcon /> {promptImgQty}
             </div>

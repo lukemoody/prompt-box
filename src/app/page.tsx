@@ -1,5 +1,5 @@
 import { PublicHeader } from "@/components/headers/public-header";
-import { PromptContainer } from "@/components/prompt-box/prompt-container";
+import { PromptContainer } from "@/components/prompt/prompt-container";
 
 export default function LandingPage() {
   return (

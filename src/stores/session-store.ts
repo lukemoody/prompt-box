@@ -14,7 +14,7 @@ interface SessionStoreType {
   setProfile: (value: string) => void;
   setEmailAddress: (value: string) => void;
   setAvailableCredits: (value: number) => void;
-  updateCreditsBalance: () => void;
+  updateCreditsBalance: (credit: number) => void;
   getAuthentication: () => boolean;
   clearSession: () => void;
 }
@@ -60,12 +60,12 @@ export const useSessionStore = create<SessionStoreType>()(
             undefined,
             "session/setAvailableCredits"
           ),
-        updateCreditsBalance: () =>
+        updateCreditsBalance: (credit: number) =>
           set(
             (state) => ({
               activeUser: {
                 ...state.activeUser,
-                credits: state.activeUser.credits - 15,
+                credits: state.activeUser.credits - credit,
               },
             }),
             undefined,
