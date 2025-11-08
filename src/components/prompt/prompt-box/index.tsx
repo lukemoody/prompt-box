@@ -21,7 +21,8 @@ import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { ImageUploader } from "@/components/image-uploader";
+import { ImageUploaderAction } from "@/components/image-uploader/image-uploader-action";
+import { ImageUploaderPreview } from "@/components/image-uploader/image-uploader-preview";
 import { Sparkles, Coins } from "lucide-react";
 import { useCredits } from "@/hooks/use-credits";
 import { useCreditBalanceCheck } from "@/hooks/use-credit-balance-check";
@@ -31,13 +32,12 @@ const formSchema = z.object({
   query: z.string().min(1, {
     message: "Please enter a prompt query",
   }),
+  referenceImage: z.any(), // TODO: tbc schema.
 });
 
 export const PromptBox = () => {
   const router = useRouter();
   const pathname = usePathname();
-
-  console.log(pathname);
 
   // Session state
   const { activeUser } = useSessionStore();
@@ -71,6 +71,7 @@ export const PromptBox = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       query: "",
+      referenceImage: undefined,
     },
   });
 
@@ -92,6 +93,7 @@ export const PromptBox = () => {
 
   // Submit prompt query
   const submitPrompt = (data: z.infer<typeof formSchema>) => {
+    console.log(data);
     setPromptQuery(data.query);
 
     if (isAuthenticatied) {
@@ -146,7 +148,10 @@ export const PromptBox = () => {
           data-element="prompt-box-footer"
           className="flex items-center justify-between w-full mt-5 rounded-full shadow-sm p-4"
         >
-          <ImageUploader />
+          <div className="flex items-center justify-between">
+            <ImageUploaderAction form={form} />
+            <ImageUploaderPreview />
+          </div>
           <div className="space-x-4">
             <PromptImgCount />
             <Tooltip>
