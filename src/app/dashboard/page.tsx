@@ -18,10 +18,7 @@ export default function DashboardPage() {
   }, [getAuthentication, router]);
 
   return (
-    <div
-      data-testid="dashboard-page"
-      className="flex flex-col items-start justify-between p-6"
-    >
+    <>
       <div className="flex flex-col items-center justify-center mx-auto max-w-[864px] w-full text-center space-y-8 mb-8">
         {username && (
           <h1 className="text-foreground font-space-grotesk leading-tight font-medium text-[34px]">
@@ -30,6 +27,6 @@ export default function DashboardPage() {
         )}
       </div>
       <PromptContainer />
-    </div>
+    </>
   );
 }

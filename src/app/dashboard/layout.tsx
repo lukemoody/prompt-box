@@ -23,7 +23,7 @@ export default function DashboardLayout({
       <ToolbarPill />
       <div
         data-testid="dashboard-page"
-        className="h-screen w-full flex flex-row items-start justify-between p-6"
+        className="h-screen w-full flex flex-row items-start justify-between px-4 lg:p-6"
       >
         <PlatformSidebar navigation={navigationData} />
         <div className="w-full pt-16 lg:pt-18">{children}</div>

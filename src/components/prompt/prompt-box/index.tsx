@@ -121,7 +121,8 @@ export const PromptBox = () => {
               <Sparkles />
               {isAuthenticatied ? (
                 <>
-                  Generate {creditCost} <Coins />
+                  <span className="hidden md:block">Generate</span> {creditCost}{" "}
+                  <Coins />
                 </>
               ) : (
                 <>Start for free</>

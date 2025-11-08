@@ -14,9 +14,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Image as ImageIcon } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const PromptImgCount = () => {
   // Session state
+  const isMobile = useIsMobile();
   const { activeUser } = useSessionStore();
   const { isAuthenticatied } = activeUser;
 
@@ -47,7 +49,7 @@ export const PromptImgCount = () => {
         </Tooltip>
       </PopoverTrigger>
       <PopoverContent
-        align="end"
+        align={isMobile ? "center" : "end"}
         sideOffset={10}
         className="bg-ui-grey-light border-ui-grey-light rounded-3xl max-w-[230px] shadow-xl"
       >
