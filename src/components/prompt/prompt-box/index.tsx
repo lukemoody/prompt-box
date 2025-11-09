@@ -27,14 +27,35 @@ import { Sparkles, Coins, CircleAlert } from "lucide-react";
 import { useCredits } from "@/hooks/use-credits";
 import { useCreditBalanceCheck } from "@/hooks/use-credit-balance-check";
 import { Alert, AlertTitle } from "@/components/ui/alert";
+import { PromptOptionType } from "@/types/prompts";
 
 // Defined schema for login form
 const formSchema = z.object({
   query: z.string().min(1, {
     message: "Please enter a prompt query",
   }),
-  referenceImage: z.any(), // TODO: tbc schema.
+  referenceImage: z.any(),
 });
+
+// Display correct placeholder copy based on chosen type
+const placeholderMap: Record<PromptOptionType["type"], string> = {
+  imageGen: "Describe the image you want to create...",
+  packagingDesign: "Describe your ideal packaging vision...",
+  logoDesign:
+    "Describe your brand, target audience and any details about the logo you want...",
+  imageEdit:
+    "Pick from one of your previous designs or upload a new image from your device.",
+  aiPhotoshoot:
+    "Click start photoshoot brief to add your specific shot details.",
+  packagingRange:
+    "Click start packaging range to add your reference design and choose your packaging types.",
+  variantRange:
+    "Click start variant range to add your reference design and describe your variants.",
+  socialAd: "This tool is coming soon! Choose another tool to continue.",
+  brandMood: "This tool is coming soon! Choose another tool to continue.",
+  packagingMocks: "This tool is coming soon! Choose another tool to continue.",
+  cardsPosters: "This tool is coming soon! Choose another tool to continue.",
+} as const;
 
 export const PromptBox = () => {
   const router = useRouter();
@@ -58,27 +79,6 @@ export const PromptBox = () => {
     balance: credits,
     creditCost: creditCost,
   });
-
-  // Display correct placeholder copy based on chosen type
-  const placeholderMap = {
-    imageGen: "Describe the image you want to create...",
-    packagingDesign: "Describe your ideal packaging vision...",
-    logoDesign:
-      "Describe your brand, target audience and any details about the logo you want...",
-    imageEdit:
-      "Pick from one of your previous designs or upload a new image from your device.",
-    aiPhotoshoot:
-      "Click start photoshoot brief to add your specific shot details.",
-    packagingRange:
-      "Click start packaging range to add your reference design and choose your packaging types.",
-    variantRange:
-      "Click start variant range to add your reference design and describe your variants.",
-    socialAd: "This tool is coming soon! Choose another tool to continue.",
-    brandMood: "This tool is coming soon! Choose another tool to continue.",
-    packagingMocks:
-      "This tool is coming soon! Choose another tool to continue.",
-    cardsPosters: "This tool is coming soon! Choose another tool to continue.",
-  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -151,11 +151,7 @@ export const PromptBox = () => {
                       >
                         <AlertTitle className="flex items-center gap-2">
                           <CircleAlert className="text-ui-blue-dark" />
-                          {
-                            placeholderMap[
-                              promptType as keyof typeof placeholderMap
-                            ]
-                          }
+                          {placeholderMap[promptType]}
                         </AlertTitle>
                       </Alert>
                     ) : (
@@ -164,9 +160,7 @@ export const PromptBox = () => {
                           promptType === "imageGen" ||
                           promptType === "packagingDesign" ||
                           promptType === "logoDesign"
-                            ? placeholderMap[
-                                promptType as keyof typeof placeholderMap
-                              ]
+                            ? placeholderMap[promptType]
                             : ""
                         }
                         className="border-transparent shadow-none focus-visible:ring-0!"

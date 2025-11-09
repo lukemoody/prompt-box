@@ -122,7 +122,6 @@ export const ToolbarPill = () => {
         <Card className="border-transparent shadow-none p-0">
           <CardHeader className="px-0 pb-2! border-b border-b-gray-200">
             <CardTitle className="flex items-center justify-start gap-4">
-              {/* Hi {username} 👋 */}
               <div className="flex items-center justify-center rounded-full w-[64px] h-[64px] bg-ui-blue">
                 {username ? username[0] : <Spinner />}
               </div>
