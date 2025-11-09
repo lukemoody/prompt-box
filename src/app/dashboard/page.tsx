@@ -28,6 +28,7 @@ export default function DashboardPage() {
         )}
       </div>
       <PromptContainer />
+      <div className="w-full mb-[400px]"></div>
     </>
   );
 }

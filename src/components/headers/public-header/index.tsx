@@ -20,7 +20,7 @@ export const PublicHeader = ({
     <header
       data-testid="public-header"
       className={cn(
-        "fixed top-0 left-0 right-0 z-10 flex items-center justify-between max-w-[1408px] w-full mx-auto py-5 md:py-2 px-5 xl:px-0",
+        "fixed top-0 left-0 right-0 z-10 flex items-center justify-between max-w-[1408px] w-full mx-auto py-5 md:py-2 px-4 lg:p-6 bg-white/95 lg:bg-transparent",
         hideElements && "max-w-full py-5 xl:py-8! px-5 xl:px-10! h-auto"
       )}
     >

@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} antialiased bg-gradient-r-violet-blue-green-subtle`}
+        className={`${spaceGrotesk.variable} antialiased bg-gradient-r-violet-blue-green-subtle px-4 lg:p-6`}
       >
         <QueryProvider>{children}</QueryProvider>
       </body>

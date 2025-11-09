@@ -44,7 +44,7 @@ export const PromptSelector = () => {
         <PopoverContent
           align={"end"}
           sideOffset={0}
-          className="grid grid-cols-3 lg:grid-cols-4 gap-4 bg-white border-ui-grey-light rounded-3xl lg:min-w-[928px] shadow-xl"
+          className="grid grid-cols-3 lg:grid-cols-4 gap-4 bg-white border-ui-grey-light rounded-3xl min-w-screen lg:min-w-[928px] shadow-xl"
         >
           {promptOptions.map((item, index) => {
             return <PromptOptionCard key={index} item={item} />;

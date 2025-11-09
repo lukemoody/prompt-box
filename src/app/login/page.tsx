@@ -84,14 +84,14 @@ export default function LoginPage() {
       <PublicHeader hideElements={true} logoReduced={true} />
       <div
         data-testid="login-page"
-        className="h-screen w-full flex items-center justify-center px-5"
+        className="h-screen w-full flex items-center justify-center"
       >
         <div className="flex flex-col items-center justify-center text-center rounded-4xl overflow-hidden max-w-[800px] w-full p-10 bg-background">
-          <div className="flex flex-col gap-4 mb-14">
+          <div className="flex flex-col lg:gap-4 lg:mb-14">
             <h1 className="text-[26px] md:text-3xl font-medium text-foreground">
               Log in or sign up in seconds
             </h1>
-            <p className="tracking-normal text-base text-ui-grey font-medium p5 md:px-24">
+            <p className="tracking-normal text-base text-ui-grey font-medium p-5 md:px-24">
               Welcome to Sourceful, sign in to your account..
             </p>
           </div>

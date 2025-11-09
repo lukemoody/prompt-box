@@ -8,7 +8,7 @@ export default function LandingPage() {
       <PublicHeader hideElements={false} />
       <div
         data-testid="landing-page"
-        className="h-screen w-full flex flex-col md:items-center md:justify-center pt-20"
+        className="w-full flex flex-col md:items-center md:justify-center pt-20"
       >
         <div className="flex flex-col items-center justify-center mx-auto max-w-[720px] w-full text-center space-y-8 mb-8">
           <h1 className="text-foreground font-space-grotesk leading-tight font-medium text-[38px] md:text-[68px]">
@@ -20,6 +20,7 @@ export default function LandingPage() {
           </p>
         </div>
         <PromptContainer />
+        <div className="w-full mb-[100px]"></div>
       </div>
     </>
   );
