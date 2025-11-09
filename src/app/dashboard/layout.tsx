@@ -26,7 +26,7 @@ export default function DashboardLayout({
         className="w-full flex flex-row items-start justify-between"
       >
         <PlatformSidebar navigation={navigationData} />
-        <div className="w-full pt-16 lg:pt-18">{children}</div>
+        <div className="w-full pt-20 lg:pt-18">{children}</div>
       </div>
     </>
   );

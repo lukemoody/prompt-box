@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { cn } from "@/lib/utils";
 import {
   Bell,
   CalendarCog,
@@ -10,6 +10,8 @@ import {
   CreditCard,
   Tag,
 } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 import { useSessionStore } from "@/stores/session-store";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ToolbarPopover } from "@/components/toolbar/toolbar-popover";
@@ -24,20 +26,30 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { LogoutButton } from "@/components/auth/logout-button";
 
-// TODO: Need mobile state for this. Will be different so maybe seperate component?
-
 export const ToolbarPill = () => {
   const isMobile = useIsMobile();
   const { activeUser } = useSessionStore();
   const { credits, email, username } = activeUser;
 
-  if (isMobile) return false;
-
   return (
     <div
       data-testid="toolbar-pill"
-      className="fixed top-6 right-8 flex items-center justify-between py-2 px-4 z-20 w-[200px] bg-background/80 rounded-full"
+      className={cn(
+        "fixed top-0 lg:top-6 left-0 lg:left-auto right-0 lg:right-8 flex items-center justify-end lg:justify-between py-2 px-4 z-20 w-full lg:w-[200px] bg-background/80 lg:rounded-full"
+      )}
     >
+      {isMobile && (
+        <Link href="/">
+          <Image
+            src="/logo-monogram.svg"
+            alt="Sourceful"
+            width={32}
+            height={32}
+            className="absolute top-3 left-0 ml-4"
+          />
+        </Link>
+      )}
+
       <ToolbarPopover
         trigger={<Bell />}
         triggerClassName="flex items-center justify-center rounded-full w-[40px] h-[40px]"

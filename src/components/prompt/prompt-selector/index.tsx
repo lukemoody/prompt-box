@@ -8,6 +8,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useEqualHeight } from "@/hooks/use-equal-height";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -32,15 +37,26 @@ export const PromptSelector = () => {
         return <PromptOptionCard key={index} item={item} />;
       })}
       <Popover>
-        <PopoverTrigger data-testid="toolbar-popover" asChild>
-          <div
-            data-element="prompt-option-card"
-            className="flex flex-col items-center flex-1 justify-center gap-2 rounded-2xl px-4 py-2 bg-ui-brown hover:bg-ui-blue transition cursor-pointer h-full"
-          >
-            <LayoutGrid />
-            <h3 className="text-xs font-medium">All options</h3>
-          </div>
-        </PopoverTrigger>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <PopoverTrigger data-testid="toolbar-popover" asChild>
+              <div
+                data-element="prompt-option-card"
+                className="flex flex-col items-center flex-1 justify-center gap-2 rounded-2xl px-4 py-2 bg-ui-brown hover:bg-ui-blue transition cursor-pointer h-full"
+              >
+                <LayoutGrid />
+                <h3 className="text-xs font-medium">All options</h3>
+              </div>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent className="max-w-[230px] text-center px-4 rounded-2xl bg-foreground">
+            <h3 className="font-medium">All options</h3>
+            <p className="text-ui-grey-light">
+              A range of AI products to choose from
+            </p>
+          </TooltipContent>
+        </Tooltip>
+
         <PopoverContent
           align={"end"}
           sideOffset={0}

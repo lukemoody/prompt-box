@@ -13,18 +13,6 @@ export const useEqualHeight = (
   selector: string | NodeListOf<Element>,
   extraSpacing: number | null = null
 ) => {
-  const resetHeights = useCallback(() => {
-    const elements =
-      typeof selector === "string"
-        ? document.querySelectorAll(selector)
-        : selector;
-    // Reset heights to auto
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i] as HTMLElement;
-      element.style.height = "auto";
-    }
-  }, [selector]);
-
   const adjustHeight = useCallback(() => {
     // Only run on screens above 560px
     // if (window.innerWidth <= 560) {
@@ -59,7 +47,7 @@ export const useEqualHeight = (
       const element = elements[i] as HTMLElement;
       element.style.height = `${maxHeight + (extraSpacing || 0)}px`;
     }
-  }, [selector, extraSpacing, resetHeights]);
+  }, [selector, extraSpacing]);
 
   useEffect(() => {
     // Wait for images to load before calculating heights
@@ -104,14 +92,18 @@ export const useEqualHeight = (
       });
     };
 
-    // Initial call with image loading check
-    waitForImages();
+    // Initial call - ensure DOM is ready first
+    const timeoutId = setTimeout(() => {
+      adjustHeight();
+      waitForImages(); // Also wait for images and adjust again if needed
+    }, 0);
 
     // Add event listeners
     window.addEventListener("resize", adjustHeight);
 
     // Cleanup function
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener("resize", adjustHeight);
     };
   }, [adjustHeight, selector]);

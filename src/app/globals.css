@@ -48,6 +48,14 @@ body {
   background-image: linear-gradient(90deg, #eacdff, #b3dcff, #8effe4);
 }
 
+.bg-gradient-r-violet-blue-green {
+  background-image: linear-gradient(90deg, #8f00ff, #2f72ff, #19e8c2);
+}
+
+.bg-clip-text {
+  background-clip: text;
+}
+
 .btn-gradient {
   @apply text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out;
   /* default state */

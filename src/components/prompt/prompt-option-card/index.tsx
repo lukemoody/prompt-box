@@ -33,7 +33,9 @@ export const PromptOptionCard = ({ item }: PromptOptionCardProps) => {
             <div>{item.icon}</div>
             <h3 className="text-xs font-medium">{item.heading}</h3>
             {item.status && (
-              <span className="text-xs font-regular">{item.status}</span>
+              <span className="text-xs font-regular text-transparent bg-gradient-r-violet-blue-green bg-clip-text">
+                {item.status}
+              </span>
             )}
           </button>
         </TooltipTrigger>
