@@ -20,6 +20,7 @@ export const usePromptStore = create<PromptStoreType>()(
       promptType: "imageGen", // DEFAULT
       promptImgQty: 5, // DEFAULT
       promptQuery: "",
+      promptRefImage: undefined,
       setPromptType: (type) =>
         set({ promptType: type }, undefined, "prompt/setPromptType"),
       setPromptImgQty: (qty) =>
@@ -34,6 +35,7 @@ export const usePromptStore = create<PromptStoreType>()(
             promptQuery: "",
             promptImgQty: 5,
             promptType: "imageGen",
+            promptRefImage: undefined,
           }),
           undefined,
           "session/clearPrompt"
