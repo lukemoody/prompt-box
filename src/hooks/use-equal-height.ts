@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, DependencyList } from "react";
 /**
  * React hook that sets equal height for all elements with the specified class name.
  *
@@ -8,10 +8,12 @@ import { useEffect, useCallback } from "react";
  *
  * @param {string} className - The class name of the elements to equalize height.
  * @param {number|null} [extraSpacing=null] - Optional additional height in pixels to add to the tallest element's height. If not provided, no extra spacing is added.
+ * @param {DependencyList} [deps] - Optional dependency array to trigger recalculation when values change.
  */
 export const useEqualHeight = (
   selector: string | NodeListOf<Element>,
-  extraSpacing: number | null = null
+  extraSpacing: number | null = null,
+  deps?: DependencyList
 ) => {
   const adjustHeight = useCallback(() => {
     // Only run on screens above 560px
@@ -49,62 +51,66 @@ export const useEqualHeight = (
     }
   }, [selector, extraSpacing]);
 
-  useEffect(() => {
-    // Wait for images to load before calculating heights
-    const waitForImages = () => {
-      // Only run on screens above 560px
-      if (window.innerWidth <= 560) {
-        return;
-      }
-
-      const elements =
-        typeof selector === "string"
-          ? document.querySelectorAll(selector)
-          : selector;
-      const images = Array.from(elements).flatMap((el) =>
-        Array.from(el.querySelectorAll("img"))
-      );
-
-      if (images.length === 0) {
-        // No images found, proceed immediately
-        adjustHeight();
-        return;
-      }
-
-      let loadedImages = 0;
-      const totalImages = images.length;
-
-      const checkAllLoaded = () => {
-        loadedImages++;
-        if (loadedImages === totalImages) {
-          // All images loaded, adjust heights
-          setTimeout(adjustHeight, 100); // Small delay to ensure layout is updated
+  useEffect(
+    () => {
+      // Wait for images to load before calculating heights
+      const waitForImages = () => {
+        // Only run on screens above 560px
+        if (window.innerWidth <= 560) {
+          return;
         }
+
+        const elements =
+          typeof selector === "string"
+            ? document.querySelectorAll(selector)
+            : selector;
+        const images = Array.from(elements).flatMap((el) =>
+          Array.from(el.querySelectorAll("img"))
+        );
+
+        if (images.length === 0) {
+          // No images found, proceed immediately
+          adjustHeight();
+          return;
+        }
+
+        let loadedImages = 0;
+        const totalImages = images.length;
+
+        const checkAllLoaded = () => {
+          loadedImages++;
+          if (loadedImages === totalImages) {
+            // All images loaded, adjust heights
+            setTimeout(adjustHeight, 100); // Small delay to ensure layout is updated
+          }
+        };
+
+        images.forEach((img: HTMLImageElement) => {
+          if (img.complete) {
+            checkAllLoaded();
+          } else {
+            img.addEventListener("load", checkAllLoaded);
+            img.addEventListener("error", checkAllLoaded); // Also handle errors
+          }
+        });
       };
 
-      images.forEach((img: HTMLImageElement) => {
-        if (img.complete) {
-          checkAllLoaded();
-        } else {
-          img.addEventListener("load", checkAllLoaded);
-          img.addEventListener("error", checkAllLoaded); // Also handle errors
-        }
-      });
-    };
+      // Initial call - ensure DOM is ready first
+      const timeoutId = setTimeout(() => {
+        adjustHeight();
+        waitForImages(); // Also wait for images and adjust again if needed
+      }, 0);
 
-    // Initial call - ensure DOM is ready first
-    const timeoutId = setTimeout(() => {
-      adjustHeight();
-      waitForImages(); // Also wait for images and adjust again if needed
-    }, 0);
+      // Add event listeners
+      window.addEventListener("resize", adjustHeight);
 
-    // Add event listeners
-    window.addEventListener("resize", adjustHeight);
-
-    // Cleanup function
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("resize", adjustHeight);
-    };
-  }, [adjustHeight, selector]);
+      // Cleanup function
+      return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener("resize", adjustHeight);
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    deps ? [adjustHeight, selector, ...deps] : [adjustHeight, selector]
+  );
 };

@@ -17,10 +17,32 @@ import {
 } from "@/components/ui/dialog";
 import { useEqualHeight } from "@/hooks/use-equal-height";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { usePromptStore } from "@/stores/prompt-store";
 
 export const PromptSelector = () => {
   const isMobile = useIsMobile();
   const [isOpen, setOpen] = React.useState<boolean>(false);
+  const promptType = usePromptStore((state) => state.promptType);
+
+  // Reorder array to put selected item first for visibility
+  const reorderedOptions = React.useMemo(() => {
+    if (isMobile) {
+      const selectedIndex = promptOptions.findIndex(
+        (item) => item.type === promptType
+      );
+      if (selectedIndex === -1 || selectedIndex === 0) {
+        return promptOptions;
+      }
+      // Move selected item to first position
+      return [
+        promptOptions[selectedIndex],
+        ...promptOptions.slice(0, selectedIndex),
+        ...promptOptions.slice(selectedIndex + 1),
+      ];
+    }
+
+    return promptOptions;
+  }, [promptType, isMobile]);
 
   const responsiveCardTotal = () => {
     if (isMobile) {
@@ -29,15 +51,19 @@ export const PromptSelector = () => {
     return 5;
   };
 
-  useEqualHeight('[data-element="prompt-option-card"]');
+  useEqualHeight('[data-element="prompt-option-card"]', null, [
+    reorderedOptions,
+  ]);
 
   return (
     <div
       data-testid="prompt-selector"
       className="flex items-start justify-between gap-4 w-full"
     >
-      {promptOptions.slice(0, responsiveCardTotal()).map((item, index) => {
-        return <PromptOptionCard key={index} item={item} setOpen={setOpen} />;
+      {reorderedOptions.slice(0, responsiveCardTotal()).map((item) => {
+        return (
+          <PromptOptionCard key={item.type} item={item} setOpen={setOpen} />
+        );
       })}
 
       <Dialog open={isOpen} onOpenChange={setOpen}>
@@ -69,9 +95,13 @@ export const PromptSelector = () => {
         >
           <DialogTitle className="sr-only">Choose your AI option.</DialogTitle>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-            {promptOptions.map((item, index) => {
+            {reorderedOptions.map((item) => {
               return (
-                <PromptOptionCard key={index} item={item} setOpen={setOpen} />
+                <PromptOptionCard
+                  key={item.type}
+                  item={item}
+                  setOpen={setOpen}
+                />
               );
             })}
           </div>
