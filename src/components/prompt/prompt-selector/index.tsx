@@ -13,7 +13,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useEqualHeight } from "@/hooks/use-equal-height";
@@ -64,15 +63,11 @@ export const PromptSelector = () => {
         <DialogContent
           className={cn(
             "bg-white border-ui-grey-light shadow-xl",
-            "rounded-none lg:rounded-3xl py-20 lg:py-8",
+            "rounded-none lg:rounded-3xl py-12 lg:py-8",
             "h-full lg:h-auto lg:h-inherit min-w-screen lg:min-w-[928px] overflow-y-scroll"
           )}
         >
-          <DialogHeader className="w-full">
-            <DialogTitle className="text-center mb-2">
-              Choose your AI option.
-            </DialogTitle>
-          </DialogHeader>
+          <DialogTitle className="sr-only">Choose your AI option.</DialogTitle>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
             {promptOptions.map((item, index) => {
               return (
