@@ -72,6 +72,7 @@ export const PromptBox = () => {
   const { promptImgQty, promptQuery } = usePromptStore();
   const promptType = usePromptStore((state) => state.promptType);
   const setPromptQuery = usePromptStore((state) => state.setPromptQuery);
+  const setPromptRefImage = usePromptStore((state) => state.setPromptRefImage);
 
   // Hooks
   const creditCost = useCredits(promptImgQty);
@@ -108,6 +109,7 @@ export const PromptBox = () => {
   const submitPrompt = (data: z.infer<typeof formSchema>) => {
     console.log(data);
     setPromptQuery(data.query);
+    setPromptRefImage(data.referenceImage);
 
     if (isAuthenticatied) {
       updateCreditsBalance(creditCost);
