@@ -30,7 +30,7 @@ export const PromptOptionCard = ({ item, setOpen }: PromptOptionCardProps) => {
               setOpen(false);
             }}
             className={cn(
-              "flex flex-col items-center flex-1 justify-center gap-2 h-full rounded-2xl px-4 py-2 shadow-xs border border-ui-grey-light hover:bg-ui-grey-light transition cursor-pointer",
+              "flex flex-col items-center flex-1 justify-center gap-2 h-full min-h-[100px] rounded-2xl px-4 py-2 shadow-xs border border-ui-grey-light hover:bg-ui-grey-light transition cursor-pointer",
               isActive && "bg-ui-blue!"
             )}
           >

@@ -95,7 +95,7 @@ export const PromptSelector = () => {
         >
           <DialogTitle className="sr-only">Choose your AI option.</DialogTitle>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-            {reorderedOptions.map((item) => {
+            {promptOptions.map((item) => {
               return (
                 <PromptOptionCard
                   key={item.type}
