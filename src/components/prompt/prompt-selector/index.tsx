@@ -64,8 +64,8 @@ export const PromptSelector = () => {
         <DialogContent
           className={cn(
             "bg-white border-ui-grey-light shadow-xl",
-            "rounded-none lg:rounded-3xl pt-12 lg:pt-inherit",
-            "h-screen lg:h-auto lg:h-inherit min-w-screen lg:min-w-[928px] overflow-y-scroll"
+            "rounded-none lg:rounded-3xl py-20 lg:py-8",
+            "h-full lg:h-auto lg:h-inherit min-w-screen lg:min-w-[928px] overflow-y-scroll"
           )}
         >
           <DialogHeader className="w-full">
