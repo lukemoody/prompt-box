@@ -3,7 +3,9 @@ import mockUserDB from "@/mock-data/users-db.json";
 
 export const signInWithEmail = async (email: string) => {
   // Mock auth login
-  const doesExist = mockUserDB.find((user) => user.email === email);
+  const doesExist = mockUserDB.find(
+    (user) => user.email === email.toLowerCase()
+  );
 
   if (doesExist) {
     return { status: 200, message: "User authenticated", data: doesExist };

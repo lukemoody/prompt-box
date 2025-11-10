@@ -22,7 +22,7 @@ export default function DashboardPage() {
     <>
       <div className="flex flex-col items-center justify-center mx-auto max-w-[864px] w-full text-center space-y-8 mb-8">
         {username && (
-          <h1 className="text-foreground font-space-grotesk leading-tight font-medium text-[23px] lg:text-[34px]">
+          <h1 className="text-foreground font-space-grotesk leading-normal font-medium text-[23px] lg:text-[34px]">
             Hi {username}, create something <PillBG>iconic</PillBG> today.
           </h1>
         )}
